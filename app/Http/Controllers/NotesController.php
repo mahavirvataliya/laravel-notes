@@ -59,6 +59,12 @@ class NotesController extends Controller
         return redirect('/');
     }
 
+     public function delete(Note $note)
+    {
+        Note::find($note)->delete();
+        return redirect('/');
+    }
+
     /**
      * Show the form for editing the specified note.
      *
@@ -70,6 +76,10 @@ class NotesController extends Controller
         return view('notes.edit', compact('note'));
     }
 
+    public function View(Note $note)
+    {
+        return view('notes.view', compact('note'));
+    }
     /**
      * Update the specified note.
      *

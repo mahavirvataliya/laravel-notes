@@ -14,6 +14,7 @@ require('./bootstrap');
  */
 
 Vue.component('edit-note', require('./components/EditNote.vue'));
+Vue.component('view-note', require('./components/ViewNote.vue'));
 
 const app = new Vue({
     el: '#app'

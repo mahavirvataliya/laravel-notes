@@ -37,6 +37,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
+                       <i class="fa fa-sticky-note" aria-hidden="true"></i>
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
@@ -44,7 +45,9 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ url('create') }}">Create Note</a></li>
+                        <li><a class="btn btn-link" href="{{ url('create') }}">
+                           &nbsp; <i class="fa fa-plus" aria-hidden="true"></i>
+                         Create Note</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -55,16 +58,17 @@
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> 
+                                    <i class="fa fa-user-circle" aria-hidden="true"></i>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ route('logout') }}"
+                                        <a class="text-danger" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            Logout <i class="fa fa-sign-out" aria-hidden="true"></i>
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
