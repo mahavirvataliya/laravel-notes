@@ -54,7 +54,70 @@
                         </ul>
                         @endif
                     </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Shared Notes With Me</div>
+                    <div class="panel-body">
+                   {{-- @if (!$snotes->isEmpty()) --}}
+                        {{-- expr --}}
+                        <ul class="list-group">
+                            @foreach ($snpms as $snpm)
+                             @foreach ($snotes as $ssnote)
+                                    {{-- expr --}}
+                                @if ($ssnote->id===$snpm->note_id)
+                                <li class="list-group-item panel-body">
+                                    <span class="col-md-12 btn-block h4">
+                                     {{ $ssnote->title }}   
+                                    </span>
 
+                                    
+                                    <span class="col-md-1 pull-right"> 
+                                        <a class="btn btn-sm btn-info" href="
+                                        @if ($snpm->owner || $snpm->edit_only)
+                                            {{ url('edit', [$ssnote->slug]) }}
+                                        @else
+                                            {{ '#' }}
+                                        @endif">
+                                        <i class="glyphicon glyphicon-edit" aria-hidden="true"></i>
+                                     
+                                        </a></span>
+                                        
+                                    <span class="col-md-1 pull-right">
+                                       <a class="btn btn-sm btn-danger"  href="
+                                       @if ($snpm->owner || $snpm->edit_only)
+                                       {{ url('delete', [$ssnote->slug]) }}
+                                       @else
+                                            {{ '#' }}
+                                        @endif">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="col-md-1 pull-right">
+                                         <a class="btn btn-sm btn-success" href="{{ url('view', [$ssnote->slug]) }}">
+                                         <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="col-md-1 pull-right">
+                                        <a class="btn btn-sm btn-success" href="
+                                        @if ($snpm->owner || $snpm->share_only)
+                                        {{url('share', [$ssnote->slug]) }}
+                                        @else
+                                            {{ '#' }}
+                                        @endif">
+                                             <i class="glyphicon glyphicon-share" aria-hidden="true"></i>
+                                            </a> 
+
+                                    </span>
+                                    <span class="col-md-12 text-info">{{ $ssnote->updated_at->diffForHumans() }}
+                                    </span>
+                                    
+                                </li>
+                                @endif
+                             @endforeach   
+                            @endforeach
+                        </ul>
+                    {{-- @endif --}}
+                    </div>
                 </div>
             </div>
         </div>

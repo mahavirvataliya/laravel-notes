@@ -1,0 +1,22 @@
+<span class="col-md-1 pull-right"> 
+                                        <a class="btn btn-sm btn-info" href="{{ url('edit', [$ssnote->slug]) }}">
+                                        <i class="glyphicon glyphicon-edit" aria-hidden="true"></i>
+                                     
+                                        </a></span>
+                                    <span class="col-md-1 pull-right">
+                                       <a class="btn btn-sm btn-danger" href="{{ url('delete', [$ssnote->slug]) }}">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="col-md-1 pull-right">
+                                         <a class="btn btn-sm btn-success" href="{{ url('view', [$ssnote->slug]) }}">
+                                         <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="col-md-1 pull-right">
+                                        <a class="btn btn-sm btn-success" href="{{ url('share', [$ssnote->slug]) }}">
+                                             <i class="glyphicon glyphicon-share" aria-hidden="true"></i>
+                                            </a> 
+
+                                    </span>
+                                    <span class="col-md-12 text-info">{{ $ssnote->updated_at->diffForHumans() }}</span>

@@ -14,11 +14,12 @@
 Auth::routes();
 
 Route::get('/', 'NotesController@index');
-Route::get('/home', 'NotesController@index');
+Route::get('home', 'NotesController@index');
 Route::get('create', 'NotesController@create');
 Route::post('create', 'NotesController@store');
+Route::get('share/{note}', 'NotesController@share');
+Route::post('shares', 'NotesController@storeshareNote');
 Route::get('edit/{note}', 'NotesController@edit');
 Route::get('view/{note}', 'NotesController@view');
-Route::get('share/{note}', 'NotesController@share');
 Route::get('delete/{note}', 'NotesController@delete');
 Route::patch('edit/{note}', 'NotesController@update');

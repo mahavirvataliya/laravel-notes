@@ -1,9 +1,21 @@
 git init
+echo "-"
 git status
+
+echo "-"
 git add .
-current_date_time = "Comminted at "
-current_date_time+="`date +%Y%m%d%H%M%S`"
-git commit -m $current_date_time
+
+echo "-"
+foo="Commitedat "
+Datedta="$(date +%d%m%Y%H%M%S)"
+dd="$(echo $foo${Datedta})"
+
+echo "-"
+git commit -m ${dd}
+
+echo "-"
 git status
+
+echo "-"
 git push -u origin master
 

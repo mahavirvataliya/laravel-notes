@@ -20,7 +20,9 @@
                     <h4 class="card-title">{{ title }}</h4>
                     <p class="card-text "><xmp style="white-space: pre-wrap">{{ body }}</xmp>
                     </p>
-                    <p class="card-text "><xmp style="white-space: pre-wrap">{{ user_id }}</xmp>
+                    <p class="card-text "><xmp style="white-space: pre-wrap">Your Id {{ user_id }}</xmp>
+                    </p>
+                    <p class="card-text "><xmp style="white-space: pre-wrap">Your Note Id {{ id }}</xmp>
                     </p>
 
                 </div>
@@ -36,6 +38,7 @@
 
         data() {
             return {
+                id:this.note.id,
                 title: this.note.title,
                 body: this.note.body,
                 user_id: this.note.user_id,

@@ -15,6 +15,11 @@ class CreateSharedNotesTable extends Migration
     {
         Schema::create('shared_notes', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('note_id');
+            $table->string('suser_email');
+            $table->boolean('owner');
+            $table->boolean('edit_only');
+            $table->boolean('share_only');
             $table->timestamps();
         });
     }

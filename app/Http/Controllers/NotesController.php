@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Note;
+use App\SharedNote;
+use App\User;
+use Auth;
 use Illuminate\Http\Request;
 
 class NotesController extends Controller
@@ -22,8 +25,21 @@ class NotesController extends Controller
         $notes = Note::where('user_id', auth()->user()->id)
                         ->orderBy('updated_at', 'DESC')
                         ->get();
+        $snpms = SharedNote::where('suser_email', auth()->user()->email)
+                        ->orderBy('updated_at', 'DESC')
+                        ->get();
 
-        return view('notes.index', compact('notes'));
+       $snotes = array();
+        
+        foreach ($snpms as $snpm) {
+            # code...
+            $ssnotes = Note::where('id', $snpm->note_id)
+                        ->get();
+            $snotes[] = $ssnotes[0];
+        }
+        
+
+        return view('notes.index', compact('notes','snpms','snotes'));
     }
 
     /**
@@ -59,6 +75,47 @@ class NotesController extends Controller
         return redirect('/');
     }
 
+    public function storeshareNote(Request $request)
+    {
+       /* $this->validate($request, [
+            'suser_email' => 'required'
+        ]);*/
+        
+         $perm = $request->noteaccess;
+        if($perm ==='owner'){
+            $owner = true;
+            $edit_only=false;
+            $share_only=false;
+        }
+        elseif ($perm==='edit_only') {
+            # code...
+            $owner = false;
+            $share_only=false;
+            $edit_only=true;
+        }
+        elseif ($perm==='share_only') {
+            # code...
+            $share_only=true;
+            $owner = false;
+            $edit_only=false;
+        }
+        else{
+            $owner = false;
+            $share_only=false;
+            $edit_only=false;
+        }
+
+        $sharednote = SharedNote::create([
+            'note_id' => $request->note_id,
+            'suser_email' => $request->suser_email,
+            'owner'   => $owner,
+            'edit_only'    => $edit_only,
+            'share_only'    => $share_only
+        ]);
+
+        return redirect('/');
+    }
+
      public function delete(Note $note)
     {
         Note::find($note)->delete();
@@ -80,12 +137,14 @@ class NotesController extends Controller
 
     public function View(Note $note)
     {
+
         return view('notes.view', compact('note'));
     }
 
     public function share(Note $note)
     {
-        return view('notes.share', compact('note'));
+        $users = User::all()->except(Auth::id());
+        return view('notes.share', compact('note','users'));
     }
     /**
      * Update the specified note.
