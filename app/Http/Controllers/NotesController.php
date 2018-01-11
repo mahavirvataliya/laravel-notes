@@ -62,6 +62,8 @@ class NotesController extends Controller
      public function delete(Note $note)
     {
         Note::find($note)->delete();
+        session_start();
+        $_SESSION["status_delete"] = "Deleted";
         return redirect('/');
     }
 
@@ -79,6 +81,11 @@ class NotesController extends Controller
     public function View(Note $note)
     {
         return view('notes.view', compact('note'));
+    }
+
+    public function share(Note $note)
+    {
+        return view('notes.share', compact('note'));
     }
     /**
      * Update the specified note.

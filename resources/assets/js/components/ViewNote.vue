@@ -18,7 +18,11 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">{{ title }}</h4>
-                    <p class="card-text"><xmp>{{ body }}</xmp></p>
+                    <p class="card-text "><xmp style="white-space: pre-wrap">{{ body }}</xmp>
+                    </p>
+                    <p class="card-text "><xmp style="white-space: pre-wrap">{{ user_id }}</xmp>
+                    </p>
+
                 </div>
             </div>
         </div>
@@ -34,6 +38,7 @@
             return {
                 title: this.note.title,
                 body: this.note.body,
+                user_id: this.note.user_id,
                 usersEditing: [],
                 status: ''
             }

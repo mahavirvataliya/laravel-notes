@@ -5,7 +5,16 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">My notes</div>
+                    <div class="panel-heading">My notes
+                        <?php 
+                        session_start();
+                        if(isset($_SESSION["status_delete"])){
+                            echo $_SESSION["status_delete"];
+                            $_SESSION["status_delete"]="";
+                        }
+                        ?>
+
+                    </div>
                     <div class="panel-body">
                         @if($notes->isEmpty())
                             <p>
@@ -34,17 +43,18 @@
                                         </a>
                                     </span>
                                     <span class="col-md-1 pull-right">
-                                         <a class="btn btn-sm btn-success" href="{{ url('edit', [$note->slug]) }}">
-                                         <i class="glyphicon glyphicon-share" aria-hidden="true"></i>
-                                        </a>
+                                        <a class="btn btn-sm btn-success" href="{{ url('share', [$note->slug]) }}">
+                                             <i class="glyphicon glyphicon-share" aria-hidden="true"></i>
+                                            </a> 
+
                                     </span>
                                     <span class="col-md-12 text-info">{{ $note->updated_at->diffForHumans() }}</span>
-
                                 </li>
                             @endforeach
                         </ul>
                         @endif
                     </div>
+
                 </div>
             </div>
         </div>

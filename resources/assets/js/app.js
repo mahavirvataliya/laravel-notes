@@ -6,7 +6,6 @@
  */
 
 require('./bootstrap');
-
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -14,6 +13,7 @@ require('./bootstrap');
  */
 
 Vue.component('edit-note', require('./components/EditNote.vue'));
+Vue.component('share-note', require('./components/ShareNote.vue'));
 Vue.component('view-note', require('./components/ViewNote.vue'));
 
 const app = new Vue({
