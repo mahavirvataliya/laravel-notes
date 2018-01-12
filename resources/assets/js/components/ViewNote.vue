@@ -20,15 +20,10 @@
                     <h4 class="card-title">{{ title }}</h4>
                     <p class="card-text "><xmp style="white-space: pre-wrap">{{ body }}</xmp>
                     </p>
-                    <p class="card-text "><xmp style="white-space: pre-wrap">Your Id {{ user_id }}</xmp>
-                    </p>
-                    <p class="card-text "><xmp style="white-space: pre-wrap">Your Note Id {{ id }}</xmp>
-                    </p>
-
                 </div>
             </div>
         </div>
-    </div>
+    
 </template>
 <script>
     export default {

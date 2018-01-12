@@ -2054,11 +2054,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['note'],
@@ -37237,19 +37232,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticStyle: {
       "white-space": "pre-wrap"
     }
-  }, [_vm._v(_vm._s(_vm.body))])], 1), _vm._v(" "), _c('p', {
-    staticClass: "card-text "
-  }, [_c('xmp', {
-    staticStyle: {
-      "white-space": "pre-wrap"
-    }
-  }, [_vm._v("Your Id " + _vm._s(_vm.user_id))])], 1), _vm._v(" "), _c('p', {
-    staticClass: "card-text "
-  }, [_c('xmp', {
-    staticStyle: {
-      "white-space": "pre-wrap"
-    }
-  }, [_vm._v("Your Note Id " + _vm._s(_vm.id))])], 1)])])])
+  }, [_vm._v(_vm._s(_vm.body))])], 1)])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

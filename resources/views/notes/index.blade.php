@@ -5,17 +5,25 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">My notes
+                    <div class="panel-heading">My Notes
+
+
+                    </div>
+                    <div class="panel-body">
                         <?php 
-                        session_start();
-                        if(isset($_SESSION["status_delete"])){
-                            echo $_SESSION["status_delete"];
+                        session_start(); 
+                        if(isset($_SESSION["status_delete"]) && $_SESSION["status_delete"]!=""){ 
+                            ?>
+                        <div class="alert alert-danger alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong> <?php
+                            echo $_SESSION["status_delete"]; ?></strong> 
+                          </div>
+                         <?php
                             $_SESSION["status_delete"]="";
                         }
                         ?>
 
-                    </div>
-                    <div class="panel-body">
                         @if($notes->isEmpty())
                             <p>
                                 You have not created any notes! <a href="{{ url('create') }}">Create one</a> now.

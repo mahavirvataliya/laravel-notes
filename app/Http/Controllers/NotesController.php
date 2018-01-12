@@ -120,7 +120,7 @@ class NotesController extends Controller
     {
         Note::find($note)->delete();
         session_start();
-        $_SESSION["status_delete"] = "Deleted";
+        $_SESSION["status_delete"] = "Note Deleted with Title : ".$note->title;
         return redirect('/');
     }
 
@@ -137,8 +137,13 @@ class NotesController extends Controller
 
     public function View(Note $note)
     {
-
-        return view('notes.view', compact('note'));
+        $snpms = SharedNote::where('note_id', $note->id)
+                        ->orderBy('updated_at', 'DESC')
+                        ->get();
+        $user = User::where('id',$note->user_id)->get();
+        $username[] = $user[0]->name;
+        $username[] = $user[0]->email;
+        return view('notes.view', compact('note','snpms','username'));
     }
 
     public function share(Note $note)

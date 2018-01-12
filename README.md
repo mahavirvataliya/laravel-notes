@@ -1,18 +1,18 @@
 # laravel-notes
-A collaborative note app built with Laravel and Pusher
+A Share note app built with Laravel
 
 ### Getting Started
 
 Clone the project repository by running the command below if you use SSH
 
 ```
-git clone git@github.com:ammezie/laravel-notes.git
+git clone git@github.com:mahavirvataliya/laravel-notes.git
 ```
 
 If you use https, use this instead
 
 ```
-git clone https://github.com/ammezie/laravel-notes.git
+git clone https://github.com/mahavirvataliya/laravel-notes.git
 ```
 
 After cloning, run:
@@ -73,4 +73,3 @@ php artisan serve
 ```
 
 and visit [http://localhost:8000/](http://localhost:8000/) to see the application in action.
-
