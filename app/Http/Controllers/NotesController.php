@@ -30,15 +30,14 @@ class NotesController extends Controller
                         ->get();
 
        $snotes = array();
-        
         foreach ($snpms as $snpm) {
             # code...
             $ssnotes = Note::where('id', $snpm->note_id)
                         ->get();
-            $snotes[] = $ssnotes[0];
+            if(!$ssnotes->isEmpty())
+                $snotes[] = $ssnotes[0];
         }
         
-
         return view('notes.index', compact('notes','snpms','snotes'));
     }
 
@@ -149,7 +148,35 @@ class NotesController extends Controller
     public function share(Note $note)
     {
         $users = User::all()->except(Auth::id());
-        return view('notes.share', compact('note','users'));
+        $snpms = SharedNote::where('note_id', $note->id)
+                        ->where('suser_email',auth()->user()->email)
+                        ->get();
+        $per = array();
+        if($snpms[0]->owner)
+        {
+            $per[0]='';
+            $per[1]='';
+            $per[2]='';
+        }
+        elseif ($snpms[0]->edit_only) {
+            # code...
+            $per[0]='disabled';
+            $per[1]='';
+            $per[2]='disabled';           
+        }
+        elseif ($snpms[0]->share_only) {
+            # code...
+            $per[0]='disabled';
+            $per[1]='disabled';
+            $per[2]=''; 
+        }
+        else
+        {
+            $per[0]='disabled';
+            $per[1]='disabled';
+            $per[2]='disabled'; 
+        }
+        return view('notes.share', compact('note','users','per'));
     }
     /**
      * Update the specified note.

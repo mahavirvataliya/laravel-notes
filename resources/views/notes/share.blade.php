@@ -31,21 +31,22 @@
                         <div class="form-group">
                         	<label for="noteaccess" class="col-md-12 control-label"><br>Access to Note For User Leave For Read-Only</label>
                             <div class="radio">
-							  <label><input type="radio" value="owner" name="noteaccess">Owner</label>
+							  <label><input type="radio" {{ $per[0] }} value="owner" name="noteaccess">Owner</label>
 							</div>
 							<div class="radio">
-							  <label><input type="radio" value="edit_only" name="noteaccess">Edit And Delete Only</label>
+							  <label><input type="radio" {{ $per[1] }} value="edit_only" name="noteaccess">Edit And Delete Only</label>
 							</div>
 							<div class="radio">
-							  <label><input type="radio" value="share_only" name="noteaccess">Share Only</label>
+							  <label><input type="radio" {{ $per[2] }} value="share_only" name="noteaccess">Share Only</label>
 							</div>
 						
 						</div>
-                            <button class="btn btn-primary pull-right">Share</button>&nbsp;
+                            <button class="btn btn-primary pull-right" {{ $per[2] }}>Share</button>&nbsp;
                             <a class="btn btn-danger" href="{{ url('') }}">Cancel</a>
                         </form>
 
 			        </div>
+                    
 			    </div>
             </div>
         </div>

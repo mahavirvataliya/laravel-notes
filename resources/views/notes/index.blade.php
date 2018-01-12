@@ -66,7 +66,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Shared Notes With Me</div>
                     <div class="panel-body">
-                   {{-- @if (!$snotes->isEmpty()) --}}
+                    @if(!$snpms->isEmpty()) 
                         {{-- expr --}}
                         <ul class="list-group">
                             @foreach ($snpms as $snpm)
@@ -124,7 +124,7 @@
                              @endforeach   
                             @endforeach
                         </ul>
-                    {{-- @endif --}}
+                     @endif 
                     </div>
                 </div>
             </div>
