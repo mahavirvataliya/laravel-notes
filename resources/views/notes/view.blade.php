@@ -8,6 +8,16 @@
             		<a class="pull-right btn btn-danger" href="{{ url('/') }}"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
                 <div class="panel-heading">View Note</div>
                 <view-note :note="{{ $note }}"></view-note>
+                <div class="panel-body">
+                  @if (!empty($tagnames))
+                    {{-- expr --}}
+                    @foreach ($tagnames as $tagname)
+                      <label> 
+                       <code class="text-primary bg-info" >{{ $tagname }}</code>
+                     </label>
+                    @endforeach
+                  @endif
+                </div>
                 </div>
                 <div class="panel panel-default">
                 <div class="panel-heading">Information of Note Id and Note Creater</div>
