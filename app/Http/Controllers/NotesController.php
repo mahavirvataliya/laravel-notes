@@ -34,8 +34,8 @@ class NotesController extends Controller
             if(!$ssnotes->isEmpty())
                 $snotes[] = $ssnotes[0];
         }
-        
-        return view('notes.index', compact('notes','snpms','snotes'));
+        $tags = Tag::all();
+        return view('notes.index', compact('notes','snpms','snotes','tags'));
     }
 
     public function create()
@@ -119,4 +119,11 @@ class NotesController extends Controller
 
         return 'Saved!';
     }
+
+
+    public function about()
+    {
+        return view('about');
+    }
+
 }

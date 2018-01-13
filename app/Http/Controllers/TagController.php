@@ -40,4 +40,51 @@ class TagController extends Controller
         return redirect('/tags');
     }
 
+    public function view(Request $request)
+    {
+       $noteidstag = NoteTag::select('note_id')->where('tag_id',$request->id)->get();
+       
+       if(!empty($noteidstag)){
+        foreach ($noteidstag as $notetag) {
+            # code...
+            $nntag[]=$notetag->note_id;
+        }
+       if(!empty($nntag)){
+        $notes = Note::where('user_id', auth()->user()->id)
+                        ->orderBy('updated_at', 'DESC')
+                        ->find($nntag);
+        $snpms = SharedNote::where('suser_email', auth()->user()->email)
+                        ->whereIn('note_id',$nntag)
+                        ->orderBy('updated_at', 'DESC')
+                        ->get();
+                    }
+                    else{
+                        $notes = Note::where('user_id', auth()->user()->email)
+                        ->orderBy('updated_at', 'DESC')
+                        ->get();
+            $snpms = SharedNote::where('suser_email', auth()->user()->id)
+                        ->orderBy('updated_at', 'DESC')
+                        ->get();
+                    }
+        }
+        else{
+             $notes = Note::where('user_id', auth()->user()->email)
+                        ->orderBy('updated_at', 'DESC')
+                        ->get();
+            $snpms = SharedNote::where('suser_email', auth()->user()->id)
+                        ->orderBy('updated_at', 'DESC')
+                        ->get();
+        }
+       $snotes = array();
+        foreach ($snpms as $snpm) {
+            # code...
+            $ssnotes = Note::where('id', $snpm->note_id)
+                        ->get();
+            if(!$ssnotes->isEmpty())
+                $snotes[] = $ssnotes[0];
+        }
+        $tags = Tag::all();
+        return view('tags.tagview', compact('notes','snpms','snotes','tags'));
+    }
+
 }

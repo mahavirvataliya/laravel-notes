@@ -4,15 +4,16 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
+                  <div class="panel panel-default">
                     <div class="panel-heading">All Tags</div>
                     <div class="panel-body">
                         @if (!empty($tags))
+                    {{-- expr --}}
                     @foreach ($tags as $tag)
-                     <a href="{{ url('tagview', [$tag->id]) }}">
-                      <b> 
-                       <code class="text-primary bg-info" >{{ $tag->tagname }}</code>
-                     </b>
+                      <a href="{{ url('tagview', [$tag->id]) }}">
+                       
+                       <code class="text-primary bg-info" > <b>{{ $tag->tagname }}</b></code>
+                     
                     </a>
                     @endforeach
                     @endif
@@ -37,7 +38,7 @@
                         }
                         ?>
 
-                        @if($notes->isEmpty())
+                        @if(empty($notes))
                             <p>
                                 You have not created any notes! <a href="{{ url('create') }}">Create one</a> now.
                             </p>
@@ -79,13 +80,13 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Shared Notes With Me</div>
                     <div class="panel-body">
-                    @if(!$snpms->isEmpty()) 
+                    @if(!empty($snpms)) 
                         {{-- expr --}}
                         <ul class="list-group">
                             @foreach ($snpms as $snpm)
                              @foreach ($snotes as $ssnote)
                                     {{-- expr --}}
-                                @if ($ssnote->id===$snpm->note_id)
+                                @if ($ssnote->id==$snpm->note_id)
                                 <li class="list-group-item panel-body">
                                     <span class="col-md-12 btn-block h4">
                                      {{ $ssnote->title }}   
@@ -140,6 +141,7 @@
                      @endif 
                     </div>
                 </div>
+              
                 
             </div>
         </div>

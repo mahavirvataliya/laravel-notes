@@ -47,7 +47,10 @@
                     <ul class="nav navbar-nav">
                         <li><a class="btn btn-link" href="{{ url('create') }}">
                            &nbsp; <i class="fa fa-plus" aria-hidden="true"></i>
-                         Create Note</a></li>
+                         Create Note</a>
+                        </li>
+                        <li><a class="btn btn-link" href="{{ url('about') }}">
+                         About</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
