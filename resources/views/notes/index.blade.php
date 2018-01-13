@@ -5,9 +5,9 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">My Notes
-
-
+                    <div class="panel-heading">My Notes <a class="btn btn-success" href="{{ url('create') }}">
+                           &nbsp; <i class="fa fa-plus" aria-hidden="true"></i>
+                         Create Note</a>
                     </div>
                     <div class="panel-body">
                         <?php 
