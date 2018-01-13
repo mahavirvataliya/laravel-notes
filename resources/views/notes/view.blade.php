@@ -11,10 +11,12 @@
                 <div class="panel-body">
                   @if (!empty($tagnames))
                     {{-- expr --}}
-                    @foreach ($tagnames as $tagname)
-                      <label> 
-                       <code class="text-primary bg-info" >{{ $tagname }}</code>
-                     </label>
+                    @foreach ($tagnames as $tag)
+                      <a href="{{ url('tagview', [$tag->id]) }}">
+                      <b> 
+                       <code class="text-primary bg-info" >{{ $tag->tagname }}</code>
+                     </b>
+                    </a>
                     @endforeach
                   @endif
                 </div>

@@ -105,7 +105,7 @@ class NotesController extends Controller
         $notetags  = NoteTag::where('note_id',$note->id)->get();
         foreach ($notetags as $notetag) {
             # code...
-            $tagnames[] = Tag::select('tagname')->where('id',$notetag->tag_id)->first()->tagname;
+            $tagnames[] = Tag::where('id',$notetag->tag_id)->first();
         }
         return view('notes.view', compact('note','snpms','username','tagnames'));
     }
