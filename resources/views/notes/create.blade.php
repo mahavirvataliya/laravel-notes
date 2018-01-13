@@ -5,6 +5,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
+                    <a class="pull-right btn btn-danger" href="{{ url('/') }}"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
                     <div class="panel-heading">Create new note</div>
                     <div class="panel-body">
                         <form action="{{ url('create') }}" method="POST" class="form" role="form">
@@ -29,7 +30,16 @@
                                     </span>
                                 @endif
                             </div>
-
+                            <div class="col-md-9">
+                            @if (!$tags->isEmpty())
+                                {{-- expr --}}
+                                @foreach ($tags as $tag)
+                                    {{-- expr --}}
+                                        <label class="checkbox-inline"> 
+                                            <input name="check_list[]" type="checkbox" value="{{ $tag->tagname }}"><code class="text-primary bg-info" >{{ $tag->tagname }}</code></label>
+                                @endforeach
+                            @endif
+                        </div>
                             <button class="btn btn-primary pull-right">Save</button>
                         </form>
                     </div>

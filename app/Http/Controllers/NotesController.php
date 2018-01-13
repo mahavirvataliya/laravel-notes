@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Note;
 use App\SharedNote;
 use App\User;
+use App\Tag;
+use App\NoteTag;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -48,7 +50,8 @@ class NotesController extends Controller
      */
     public function create()
     {
-        return view('notes.create');
+        $tags  = Tag::all();
+        return view('notes.create',compact('tags'));
     }
 
     /**
@@ -63,6 +66,13 @@ class NotesController extends Controller
             'title' => 'required',
             'body'  => 'required'
         ]);
+        $tags="";
+        if(!empty($request->check_list)){
+        // Loop to store and display values of individual checked checkbox.
+            foreach($request->check_list as $tagnames){
+                $tags=$tags.$tagnames."</br>";
+            }
+        }
 
         $note = Note::create([
             'user_id' => $request->user()->id,
@@ -71,6 +81,8 @@ class NotesController extends Controller
             'body'    => $request->body
         ]);
 
+       /*  session_start();
+        $_SESSION["status_delete"] = "Note Deleted with Title : ".$tags;*/
         return redirect('/');
     }
 
@@ -115,9 +127,10 @@ class NotesController extends Controller
         return redirect('/');
     }
 
-     public function delete(Note $note)
+    public function delete(Note $note)
     {
         Note::find($note)->delete();
+        SharedNote::where('note_id', $note->id)->delete();
         session_start();
         $_SESSION["status_delete"] = "Note Deleted with Title : ".$note->title;
         return redirect('/');
@@ -151,7 +164,8 @@ class NotesController extends Controller
         $snpms = SharedNote::where('note_id', $note->id)
                         ->where('suser_email',auth()->user()->email)
                         ->get();
-        $per = array();
+        $per = array('','','');
+        if(!$snpms->isEmpty()){
         if($snpms[0]->owner)
         {
             $per[0]='';
@@ -175,7 +189,7 @@ class NotesController extends Controller
             $per[0]='disabled';
             $per[1]='disabled';
             $per[2]='disabled'; 
-        }
+        }}
         return view('notes.share', compact('note','users','per'));
     }
     /**

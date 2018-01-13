@@ -14,6 +14,12 @@
 Auth::routes();
 
 Route::get('/', 'NotesController@index');
+
+Route::get('tags', 'TagController@index');
+Route::post('tags', 'TagController@store');
+Route::post('tagdelete', 'TagController@delete');
+
+
 Route::get('home', 'NotesController@index');
 Route::get('create', 'NotesController@create');
 Route::post('create', 'NotesController@store');

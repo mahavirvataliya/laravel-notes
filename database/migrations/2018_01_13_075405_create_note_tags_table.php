@@ -17,6 +17,7 @@ class CreateNoteTagsTable extends Migration
             $table->increments('id');
             $table->integer('tag_id');
             $table->integer('note_id');
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }
