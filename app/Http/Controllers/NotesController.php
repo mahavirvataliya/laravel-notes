@@ -81,6 +81,7 @@ class NotesController extends Controller
     public function delete(Note $note)
     {
         Note::find($note)->delete();
+        //or Note::destroy($note->id);
         SharedNote::where('note_id', $note->id)->delete();
         NoteTag::where('note_id',$note->id)->delete();
         session_start();

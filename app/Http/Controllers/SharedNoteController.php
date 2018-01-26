@@ -80,7 +80,11 @@ class SharedNoteController extends Controller
             $share_only=false;
             $edit_only=false;
         }
-
+        $ss =SharedNote::where('note_id',$request->note_id)
+                        ->where('suser_email',$request->suser_email)
+                        ->get();
+        if(empty($ss[0]))
+        {
         $sharednote = SharedNote::create([
             'note_id' => $request->note_id,
             'suser_email' => $request->suser_email,
@@ -88,7 +92,16 @@ class SharedNoteController extends Controller
             'edit_only'    => $edit_only,
             'share_only'    => $share_only
         ]);
-
+        }
+        else{
+            foreach ($ss as $sss) {
+                # code...
+                $sss->owner=$owner;
+                $sss->edit_only=$edit_only;
+                $sss->share_only=$share_only;
+                $sss->save();
+            }
+        }
         return redirect('/');
     }
 }
